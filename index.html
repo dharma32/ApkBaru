@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script src="jQuery.js"></script>
+    </head>
+    <body>
+        <table> 
+            <tr>
+                <td>
+                        <img src="hadi.jpg" height="150px" width="150px"/>
+                       
+                </td>
+                <td>
+                      
+                        <h4>Hadi Dharmawan</h4>
+                </td>
+            </tr>
+           
+                
+        </table>
+                
+        
+        <center>
+        <form>
+            <input type="button" onclick="getData()" value="Ok"/>
+        </form>
+     </center>
+        <hr>
+        <br>
+        <div id="loading" style="text-align: center"></div>
+	    <div id="hasil"></div>
+        <script>
+            
+        function showImage(){
+				var viewpict = document.getElementById("loading");
+				var pic = "<img src='basket.gif' height='100' width='100'>";
+				viewpict.innerHTML = pic;
+		}
+		function hideImage(){
+			var viewpict = document.getElementById("loading");
+			viewpict.innerHTML = "";
+			
+		}
+        function getData(){
+        
+            var view = document.getElementById("hasil");
+		
+			var myurl = "https://api.github.com/users";	
+			showImage();
+			$(document).ready(function(){
+				$.ajax({
+					crossDomain: true,
+					url:myurl,
+					
+					dataType: 'text',
+					method:'GET',
+					success:function (response){
+						hideImage();
+						view.innerHTML = response;						
+					},
+					error: function (error){
+						hideImage();
+						view.innerHTML = "error";
+					
+					}
+				});
+			});
+
+        }
+        </script>
+    </body>
+</html>
